@@ -1,0 +1,53 @@
+# .github/workflows/build.yml
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      package_name:
+        description: "用于特殊编译的包名（如：com.xxx.yyy）"
+        required: false
+        default: ""
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    # 安装系统依赖
+    - name: Install dependencies
+      run: |
+        sudo apt-get update -y
+        sudo apt-get install -y apktool signapk openjdk-8-jdk
+
+    # 强制切换到 Java 8
+    - name: Set Java 8 as default
+      run: |
+        sudo update-alternatives --set javac /usr/lib/jvm/java-8-openjdk-amd64/bin/javac
+        java -version
+        javac -version
+
+    # 普通编译 or 特殊编译
+    - name: Build
+      run: |
+        if [ -n "${{ github.event.inputs.package_name }}" ]; then
+          echo "Triggering special build with package: ${{ github.event.inputs.package_name }}"
+          ./build.sh -s "${{ github.event.inputs.package_name }}"
+        else
+          echo "Triggering normal build"
+          ./build.sh
+        fi
+
+    # 上传产物（可根据实际目录调整）
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-output
+        path: out/

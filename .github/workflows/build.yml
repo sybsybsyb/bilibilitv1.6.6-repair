@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       package_name:
-        description: "用于特殊编译的包名（如：com.xxx.yyy）"
+        description: "用于特殊编译的包名（如 com.xxx.yyy）；留空则走普通流程"
         required: false
         default: ""
 
@@ -21,33 +21,47 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    # 安装系统依赖
+    # 1) 环境安装
     - name: Install dependencies
       run: |
         sudo apt-get update -y
         sudo apt-get install -y apktool signapk openjdk-8-jdk
-
-    # 强制切换到 Java 8
-    - name: Set Java 8 as default
-      run: |
         sudo update-alternatives --set javac /usr/lib/jvm/java-8-openjdk-amd64/bin/javac
         java -version
         javac -version
 
-    # 普通编译 or 特殊编译
-    - name: Build
+    # 2) 赋予脚本执行权限（关键修复）
+    - name: Make scripts executable
+      run: chmod +x build.sh mybv/java/build.sh
+
+    # 3) 反编译（仅第一次）
+    - name: Decompile
+      run: |
+        if [ ! -d mybv ]; then
+          ./build.sh -d
+        fi
+
+    # 4) 编译
+    - name: Build APK
       run: |
         if [ -n "${{ github.event.inputs.package_name }}" ]; then
-          echo "Triggering special build with package: ${{ github.event.inputs.package_name }}"
+          echo "Special build with package: ${{ github.event.inputs.package_name }}"
           ./build.sh -s "${{ github.event.inputs.package_name }}"
         else
-          echo "Triggering normal build"
+          echo "Normal build"
           ./build.sh
         fi
 
-    # 上传产物（可根据实际目录调整）
+    # 5) 整理产物
+    - name: Collect artifacts
+      run: |
+        mkdir -p final
+        cp -f mybv.apk  final/
+        cp -f update.json final/
+
+    # 6) 上传
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: build-output
-        path: out/
+        path: final/

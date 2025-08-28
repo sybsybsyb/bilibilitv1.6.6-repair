@@ -88,7 +88,7 @@ public class BiliLiveContent implements Parcelable {
             @Override
             public Integer call() {
                 //return ((playUrlResponse) pz.a(new qa.a(playUrlResponse.class).a("https://api.live.bilibili.com/room/v1/Room/playUrl").a(true).b("cid", String.valueOf(BiliLiveContent.this.mRoomId)).b("quality",String.valueOf(BiliLiveContent.this.mCurrentQuality)).b("platform","web").a(new qb()).a(),"GET")).e(BiliLiveContent.this);
-                return ((playUrlResponse) pz.a(new qa.a(playUrlResponse.class).a("https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPlayInfo").a(true).b("appkey",BiliConfig.a()).b("access_key",mg.a(MainApplication.a()).e()).b("room_id", String.valueOf(BiliLiveContent.this.mRoomId)).b("qn",String.valueOf(BiliLiveContent.this.mCurrentQuality)).b("protocol","0").b("format","0").b("codec","1").a(new qb()).a(),"GET")).e(BiliLiveContent.this);
+                return ((playUrlResponse) pz.a(new qa.a(playUrlResponse.class).a("https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPlayInfo").a(true).b("appkey",BiliConfig.a()).b("access_key",mg.a(MainApplication.a()).e()).b("room_id", String.valueOf(BiliLiveContent.this.mRoomId)).b("qn",String.valueOf(BiliLiveContent.this.mCurrentQuality)).b("protocol","1").b("format","1,2").b("codec","1").a(new qb()).a(),"GET")).e(BiliLiveContent.this);
             }
         });
         try {

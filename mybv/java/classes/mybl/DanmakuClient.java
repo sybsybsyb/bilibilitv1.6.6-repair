@@ -114,6 +114,7 @@ public class DanmakuClient {
                 + ", \"protover\": 2, \"platform\": \"web\", \"type\": 2, \"key\": \"" + token + "\"}";
         try {
             client = new DanmakuWebSocketClient(new URI(url));
+            client.setConnectionLostTimeout(0);
             client.connectBlocking();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             DataOutputStream outToServer = new DataOutputStream(baos);

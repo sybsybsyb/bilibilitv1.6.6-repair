@@ -18,6 +18,7 @@ import tv.danmaku.videoplayer.core.danmaku.comment.DrawableItem;
 
 import bl.abd;
 import org.json.*;
+import okio.ByteString;
 import android.text.*;
 import android.util.*;
 import android.graphics.*;
@@ -25,9 +26,6 @@ import android.text.style.*;
 import android.content.Context;
 import com.bilibili.tv.MainApplication;
 import android.graphics.drawable.Drawable;
-
-import java.math.BigInteger;
-import java.security.MessageDigest;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
@@ -66,12 +64,7 @@ public class DanmakuClient {
         //String sub_url="4932caff0ff746eab6f01bf08b70ac45";
         //MIXIN_TABLE=[46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49, 33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40, 61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11, 36, 20, 34, 44, 52];
         String mixin_key="ea1db124af3c7062474693fa704f4ff8";
-        try{
-            return String.format("%1$032x", new BigInteger(1, MessageDigest.getInstance("MD5").digest((msg+mixin_key).getBytes())));
-        }catch(Exception e){
-            e.printStackTrace();
-            return null;
-        }
+        return ByteString.encodeUtf8(msg+mixin_key).md5().hex();
     }
 
     public DanmakuClient(int rid) {
@@ -92,7 +85,7 @@ public class DanmakuClient {
                 Response response = (Response) pz.a(new qa.a(Response.class)
                     .a("https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo")
                     .a(true).b("Bilibili Freedoooooom/MarkII")
-                    .a("Cookie","buvid3=00000000-0000-0000-0000-00000000000000000infoc")
+                    .a("Cookie","buvid3="+UUID.randomUUID().toString().toUpperCase()+"00000infoc")
                     .b("id", String.valueOf(roomId))
                     .b("ts", String.valueOf(t))
                     .b("w_rid", sign(String.format("id=%d&ts=%d",roomId,t)))
@@ -121,6 +114,7 @@ public class DanmakuClient {
                 + ", \"protover\": 2, \"platform\": \"web\", \"type\": 2, \"key\": \"" + token + "\"}";
         try {
             client = new DanmakuWebSocketClient(new URI(url));
+            client.setConnectionLostTimeout(0);
             client.connectBlocking();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             DataOutputStream outToServer = new DataOutputStream(baos);
@@ -140,7 +134,7 @@ public class DanmakuClient {
                 outToServer.writeInt(2);
                 outToServer.writeInt(0);
                 client.send(baos.toByteArray());
-                Thread.sleep(20000);
+                Thread.sleep(10000);
             }
         } catch (Exception e) {
             e.printStackTrace();

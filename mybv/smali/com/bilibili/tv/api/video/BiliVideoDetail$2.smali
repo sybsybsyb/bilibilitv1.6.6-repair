@@ -21,7 +21,7 @@
         "Ljava/lang/Object;",
         "Ljava/util/concurrent/Callable",
         "<",
-        "Lorg/json/JSONObject;",
+        "Lcom/alibaba/fastjson/JSONObject;",
         ">;"
     }
 .end annotation
@@ -36,7 +36,7 @@
     .locals 0
 
     .prologue
-    .line 131
+    .line 133
     iput-object p1, p0, Lcom/bilibili/tv/api/video/BiliVideoDetail$2;->this$0:Lcom/bilibili/tv/api/video/BiliVideoDetail;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -46,28 +46,11 @@
 
 
 # virtual methods
-.method public bridge synthetic call()Ljava/lang/Object;
-    .locals 1
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Ljava/lang/Exception;
-        }
-    .end annotation
-
-    .prologue
-    .line 131
-    invoke-virtual {p0}, Lcom/bilibili/tv/api/video/BiliVideoDetail$2;->call()Lorg/json/JSONObject;
-
-    move-result-object v0
-
-    return-object v0
-.end method
-
-.method public call()Lorg/json/JSONObject;
+.method public call()Lcom/alibaba/fastjson/JSONObject;
     .locals 4
 
     .prologue
-    .line 134
+    .line 136
     new-instance v0, Lbl/qa$a;
 
     const-class v1, Lcom/bilibili/tv/api/video/BiliVideoDetail$JsonResponse;
@@ -126,7 +109,24 @@
 
     check-cast v0, Lcom/bilibili/tv/api/video/BiliVideoDetail$JsonResponse;
 
-    invoke-virtual {v0}, Lcom/bilibili/tv/api/video/BiliVideoDetail$JsonResponse;->result()Lorg/json/JSONObject;
+    invoke-virtual {v0}, Lcom/bilibili/tv/api/video/BiliVideoDetail$JsonResponse;->result()Lcom/alibaba/fastjson/JSONObject;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public bridge synthetic call()Ljava/lang/Object;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/Exception;
+        }
+    .end annotation
+
+    .prologue
+    .line 133
+    invoke-virtual {p0}, Lcom/bilibili/tv/api/video/BiliVideoDetail$2;->call()Lcom/alibaba/fastjson/JSONObject;
 
     move-result-object v0
 

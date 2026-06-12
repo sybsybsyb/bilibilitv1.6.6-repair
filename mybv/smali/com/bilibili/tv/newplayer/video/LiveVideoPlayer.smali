@@ -422,22 +422,24 @@
 
     move-result v0
 
-    if-eqz v0, :cond_20
+    if-eqz v0, :cond_22
 
     .line 272
     :cond_c
     :try_start_c
-    iget-object v0, p0, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->x:Landroid/view/TextureView;
+    iget-object v0, p0, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->x:Landroid/view/View;
 
-    iget-object v1, p0, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->x:Landroid/view/TextureView;
+    check-cast v0, Landroid/view/TextureView;
 
-    invoke-virtual {v1}, Landroid/view/TextureView;->getWidth()I
+    iget-object v1, p0, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->x:Landroid/view/View;
+
+    invoke-virtual {v1}, Landroid/view/View;->getWidth()I
 
     move-result v1
 
-    iget-object v2, p0, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->x:Landroid/view/TextureView;
+    iget-object v2, p0, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->x:Landroid/view/View;
 
-    invoke-virtual {v2}, Landroid/view/TextureView;->getHeight()I
+    invoke-virtual {v2}, Landroid/view/View;->getHeight()I
 
     move-result v2
 
@@ -446,19 +448,19 @@
     move-result-object v0
 
     iput-object v0, p0, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->z:Landroid/graphics/Bitmap;
-    :try_end_20
-    .catch Ljava/lang/Exception; {:try_start_c .. :try_end_20} :catch_24
+    :try_end_22
+    .catch Ljava/lang/Exception; {:try_start_c .. :try_end_22} :catch_26
 
     .line 278
-    :cond_20
-    :goto_20
+    :cond_22
+    :goto_22
     invoke-virtual {p0}, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->q()V
 
     .line 279
     return-void
 
     .line 273
-    :catch_24
+    :catch_26
     move-exception v0
 
     .line 274
@@ -469,7 +471,7 @@
 
     iput-object v0, p0, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->z:Landroid/graphics/Bitmap;
 
-    goto :goto_20
+    goto :goto_22
 .end method
 
 .method private H()V

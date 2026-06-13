@@ -266,9 +266,9 @@ public abstract class wy extends wx implements TextureView.SurfaceTextureListene
             this.u.removeAllViews();
         }
         this.x = null;
-        if(mybl.BiliFilter.prefer_videoview==3)this.x = new lz(getContext());
-        else if(mybl.BiliFilter.prefer_videoview==2)this.x = new TextureView(getContext());
-        else this.x = new SurfaceView(getContext());
+        if(mybl.BiliFilter.prefer_videoview==3)this.x = new wz3(getContext());
+        else if(mybl.BiliFilter.prefer_videoview==2)this.x = new wz2(getContext());
+        else this.x = new wz1(getContext());
         if(mybl.BiliFilter.prefer_videoview>1)((TextureView)this.x).setSurfaceTextureListener(this);
         else ((SurfaceView)this.x).getHolder().addCallback(this);
         this.x.setRotation(this.h);

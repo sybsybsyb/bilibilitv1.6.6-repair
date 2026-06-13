@@ -1550,13 +1550,13 @@
 
     if-ne v0, v1, :cond_46
 
-    new-instance v0, Lbl/lz;
+    new-instance v0, Lbl/wz3;
 
     invoke-virtual {p0}, Lbl/wy;->getContext()Landroid/content/Context;
 
     move-result-object v1
 
-    invoke-direct {v0, v1}, Lbl/lz;-><init>(Landroid/content/Context;)V
+    invoke-direct {v0, v1}, Lbl/wz3;-><init>(Landroid/content/Context;)V
 
     iput-object v0, p0, Lbl/wy;->x:Landroid/view/View;
 
@@ -1612,13 +1612,13 @@
 
     if-ne v0, v1, :cond_57
 
-    new-instance v0, Landroid/view/TextureView;
+    new-instance v0, Lbl/wz2;
 
     invoke-virtual {p0}, Lbl/wy;->getContext()Landroid/content/Context;
 
     move-result-object v1
 
-    invoke-direct {v0, v1}, Landroid/view/TextureView;-><init>(Landroid/content/Context;)V
+    invoke-direct {v0, v1}, Lbl/wz2;-><init>(Landroid/content/Context;)V
 
     iput-object v0, p0, Lbl/wy;->x:Landroid/view/View;
 
@@ -1626,13 +1626,13 @@
 
     .line 271
     :cond_57
-    new-instance v0, Landroid/view/SurfaceView;
+    new-instance v0, Lbl/wz1;
 
     invoke-virtual {p0}, Lbl/wy;->getContext()Landroid/content/Context;
 
     move-result-object v1
 
-    invoke-direct {v0, v1}, Landroid/view/SurfaceView;-><init>(Landroid/content/Context;)V
+    invoke-direct {v0, v1}, Lbl/wz1;-><init>(Landroid/content/Context;)V
 
     iput-object v0, p0, Lbl/wy;->x:Landroid/view/View;
 

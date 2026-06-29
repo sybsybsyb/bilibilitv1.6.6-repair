@@ -1,6 +1,6 @@
-.class public Lbl/wz3;
-.super Lbl/lz;
-.source "wz3.java"
+.class public Lbl/wz2;
+.super Landroid/view/TextureView;
+.source "wz2.java"
 
 
 # instance fields
@@ -14,10 +14,10 @@
     .locals 0
 
     .prologue
-    .line 13
-    invoke-direct {p0, p1}, Lbl/lz;-><init>(Landroid/content/Context;)V
-
     .line 14
+    invoke-direct {p0, p1}, Landroid/view/TextureView;-><init>(Landroid/content/Context;)V
+
+    .line 15
     return-void
 .end method
 
@@ -27,8 +27,8 @@
     .locals 1
 
     .prologue
-    .line 57
-    iget v0, p0, Lbl/wz3;->b:I
+    .line 58
+    iget v0, p0, Lbl/wz2;->b:I
 
     return v0
 .end method
@@ -37,8 +37,8 @@
     .locals 1
 
     .prologue
-    .line 53
-    iget v0, p0, Lbl/wz3;->a:I
+    .line 54
+    iget v0, p0, Lbl/wz2;->a:I
 
     return v0
 .end method
@@ -49,7 +49,7 @@
     .prologue
     const/high16 v8, 0x40000000    # 2.0f
 
-    .line 18
+    .line 19
     invoke-static {}, Lbl/wm;->a()Lbl/wm;
 
     move-result-object v0
@@ -58,7 +58,7 @@
 
     move-result v4
 
-    .line 19
+    .line 20
     invoke-static {}, Lbl/wm;->a()Lbl/wm;
 
     move-result-object v0
@@ -67,75 +67,75 @@
 
     move-result v5
 
-    .line 21
+    .line 22
     invoke-static {v4, p1}, Landroid/view/View;->getDefaultSize(II)I
 
     move-result v3
 
-    .line 22
+    .line 23
     invoke-static {v5, p2}, Landroid/view/View;->getDefaultSize(II)I
 
     move-result v1
 
-    .line 27
+    .line 28
     if-lez v4, :cond_4e
 
     if-lez v5, :cond_4e
 
-    .line 28
+    .line 29
     invoke-static {p1}, Landroid/view/View$MeasureSpec;->getMode(I)I
 
     move-result v6
 
-    .line 29
+    .line 30
     invoke-static {p1}, Landroid/view/View$MeasureSpec;->getSize(I)I
 
     move-result v2
 
-    .line 30
+    .line 31
     invoke-static {p2}, Landroid/view/View$MeasureSpec;->getMode(I)I
 
     move-result v7
 
-    .line 31
+    .line 32
     invoke-static {p2}, Landroid/view/View$MeasureSpec;->getSize(I)I
 
     move-result v0
 
-    .line 33
+    .line 34
     if-ne v6, v8, :cond_4e
 
     if-ne v7, v8, :cond_4e
 
-    .line 34
+    .line 35
     mul-int v1, v4, v0
 
     mul-int v3, v2, v5
 
     if-ge v1, v3, :cond_44
 
-    .line 35
+    .line 36
     mul-int v1, v4, v0
 
     div-int/2addr v1, v5
 
     move v2, v1
 
-    .line 47
+    .line 48
     :cond_3c
     :goto_3c
-    iput v2, p0, Lbl/wz3;->a:I
-
-    .line 48
-    iput v0, p0, Lbl/wz3;->b:I
+    iput v2, p0, Lbl/wz2;->a:I
 
     .line 49
-    invoke-virtual {p0, v2, v0}, Lbl/wz3;->setMeasuredDimension(II)V
+    iput v0, p0, Lbl/wz2;->b:I
 
     .line 50
+    invoke-virtual {p0, v2, v0}, Lbl/wz2;->setMeasuredDimension(II)V
+
+    .line 51
     return-void
 
-    .line 37
+    .line 38
     :cond_44
     mul-int v1, v4, v0
 
@@ -143,7 +143,7 @@
 
     if-le v1, v3, :cond_3c
 
-    .line 39
+    .line 40
     mul-int v0, v2, v5
 
     div-int/2addr v0, v4

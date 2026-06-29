@@ -1,15 +1,16 @@
 package bl;
 
 import android.content.Context;
+import android.view.TextureView;
 import android.view.View;
 
 /* compiled from: BL */
 /* loaded from: classes.dex */
-public class wz3 extends lz {
+public class wz2 extends TextureView {
     private int a;
     private int b;
 
-    public wz3(Context context) {
+    public wz2(Context context) {
         super(context);
     }
 
